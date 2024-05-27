@@ -1,5 +1,4 @@
 import openpyxl
-from openpyxl.styles import Protection
 
 # Cria um novo arquivo de planilha
 workbook = openpyxl.Workbook()
@@ -87,14 +86,6 @@ linhas = dados.strip().split('\n')
 for i, linha in enumerate(linhas):
     celula = sheet.cell(row=i+1, column=1)
     celula.value = linha
-
-    # Verifica se a linha corresponde a uma célula editável
-    if (i+1) in [13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 38, 40, 42, 44]:
-        # Define a propriedade de proteção como False para tornar a célula editável
-        celula.protection = Protection(locked=False)
-
-# Protege a planilha para manter as outras células não editáveis
-sheet.protection.sheet = True
 
 # Salva a planilha
 workbook.save('imovel.xlsx')
